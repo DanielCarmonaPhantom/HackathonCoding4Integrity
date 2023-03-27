@@ -1,0 +1,62 @@
+{% include 'base.html' %}
+
+
+{% block title %}
+    <title>{{ medicine.name }}</title>
+{% endblock %}
+
+{% block index %}
+
+
+    <main id="main" class="main">
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card info-card">
+                            <div class="pagetitle">
+                              <nav>
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                  <li class="breadcrumb-item active">{{ batch.serial }}</li>
+                                </ol>
+                              </nav>
+                            </div>
+                            <h1 class="title">{{ batch.serial }}</h1>
+                            <table class="table mt-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Medicina</th>
+                                        <th scope="col">Lote</th>
+                                        <th scope="col">Serial</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in '0123456789'|make_list %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ medicine }}</td>
+                                        <td>{{ batch.batch }}</td>
+                                        <td><a href="">{{ batch.serial }}{{ forloop.counter }}</a></td>
+                                      </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card info-card">
+                            <img src="{{path_img_relative}}" alt="Código QR" class="img-fluid">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

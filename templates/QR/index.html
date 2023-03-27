@@ -1,0 +1,120 @@
+{% include 'base.html' %}
+
+{% include 'componets/modal/create-batch.html' %}
+
+
+
+{% block title %}
+    <title>QR de base de datos</title>
+{% endblock %}
+
+{% block index %}
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">GPL 326</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+
+        <li class="nav-item dropdown pe-3">
+            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <span class="">Nuevo Lote</span>
+            </a>
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header>
+    <main id="main" class="main">
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="card recent-sales overflow-auto">
+                            <h5 class="card-title">Catalogo</h5>
+                            <div class="filter">
+                              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                  <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                              </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <table class="table table-borderless datatable">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Medicina</th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for medicine in medicines_catalog %}
+                                            <tr>
+                                                <th scope="row">{{ medicine.id }}</th>
+                                                <td>{{ medicine.name }}</td>
+                                              </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="card info-card">
+                            <h5 class="card-title">Lotes</h5>
+                            <table class="table">
+                                  <thead>
+                                        <tr>
+                                            <th><abbr title="id">ID</abbr></th>
+                                            <th><abbr title="laboratory">Laboratory</abbr></th>
+                                            <th><abbr title="batch">Batch</abbr></th>
+                                            <th><abbr title="name">Serial</abbr></th>
+                                            <th><abbr title="expiration at">Expiration</abbr></th>
+                                            <th><abbr title="validation">Validation</abbr></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                        {% for batch in batchs %}
+                                            <tr>
+                                            <th>{{ batch.id }}</th>
+                                            <th>{{ batch.laboratory_id }}</th>
+                                            <th>{{ batch.batch }}</th>
+                                            <th><a href="{% url 'medicine_detail' batch.id %}">{{ batch.serial }}</a></th>
+                                            <th>{{ batch.expiration_at.date }}</th>
+                                            <th>{{ batch.valitation }}</th>
+                                            </tr>
+                                        {% endfor %}
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

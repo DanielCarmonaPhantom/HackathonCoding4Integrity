@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Crear un Lote</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="" method="post" role="form">
+              {% csrf_token %}
+              <div class="mb-3">
+                  <label for="exampleInputLaboratory" class="form-label">Laboratorio</label>
+                      <select class="form-select" aria-label="Default select example" id="exampleInputLaboratory" name="laboratory">
+                      <option selected>Selecciona el laboratorio</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      </select>
+              </div>
+              <div class="mb-3">
+                  <label for="exampleInputMedicine" class="form-label">Medicina</label>
+                      <select class="form-select" aria-label="Default select example" id="exampleInputMedicine" name="medicine">
+                      <option selected>Selecciona la medicina del lote</option>
+                          {% for medicine in medicines_catalog %}
+                            <option value="{{ forloop.counter }}">{{ medicine.name }}</option>
+                          {% endfor %}
+
+                      </select>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputBatch" class="form-label">Lote</label>
+                <input type="number" class="form-control" id="exampleInputBatch" name="batch">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputExpiretAT" class="form-label">Fecha de caducidad</label>
+                <input type="date" class="form-control" id="exampleInputExpiretAT" name="expiretAT">
+              </div>
+              <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Asignar Nuevo Lote</button>
+              </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div>
